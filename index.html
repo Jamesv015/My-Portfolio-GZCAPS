@@ -4,165 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="James Vincent G Limos — IT Graduate | Web Developer | Portfolio" />
-  <meta name="theme-color" content="#0b0b0b" />
-  <meta property="og:title" content="James Vincent G. Limos — Portfolio" />
-  <meta property="og:description" content="IT Graduate · Web Developer · Open to Opportunities" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="gz.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="James Vincent G. Limos — Portfolio" />
-  <meta name="twitter:description" content="IT Graduate · Web Developer · Open to Opportunities" />
-  <title>James Vincent G. Limos — Portfolio</title>
+  <title>James Vincent G. Limos | IT Graduate</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
+
+  <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <style>
+    /* ─── TOKENS ─────────────────────────────────────── */
     :root {
-      --bg: #0b0b0b;
-      --bg-2: #111111;
-      --bg-3: #161616;
-      --border: rgba(255,255,255,0.07);
-      --border-hv: rgba(255,255,255,0.18);
-      --text: #e8e4dc;
-      --text-dim: #7a7570;
-      --text-mid: #a09890;
-      --accent: #c8a97e;
-      --accent-dim: rgba(200,169,126,0.12);
+      --bg:          #0b0b0b;
+      --bg-2:        #111111;
+      --bg-3:        #161616;
+      --border:      rgba(255,255,255,0.07);
+      --border-hv:   rgba(255,255,255,0.18);
+      --text:        #e8e4dc;
+      --text-dim:    #7a7570;
+      --text-mid:    #a09890;
+      --accent:      #c8a97e;
+      --accent-dim:  rgba(200,169,126,0.12);
       --accent-glow: rgba(200,169,126,0.25);
-      --white: #f5f1ea;
-      --danger: #b85c4a;
-      --success: #4a8c6a;
-      --r: 4px;
-      --r-card: 2px;
-      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --white:       #f5f1ea;
+      --error:       #d9534f;
+      --success:     #4a8c6a;
+      --r:           4px;
+      --r-card:      2px;
+      --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    /* ─── SKIP LINK (Accessibility) ─────────────────── */
-    .skip-link {
-      position: fixed;
-      top: -100%;
-      left: 1rem;
-      z-index: 10002;
-      padding: .75rem 1.5rem;
-      background: var(--accent);
-      color: var(--bg);
-      font-family: 'DM Mono', monospace;
-      font-size: .75rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      border-radius: var(--r);
-      transition: top .2s;
-    }
-    .skip-link:focus { top: 1rem; }
-
-    /* ─── PASSWORD GATE ─────────────────────────────── */
-    #password-gate {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 10001;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 2rem;
-      opacity: 1;
-      transition: opacity .6s var(--ease-out);
-    }
-    #password-gate.hidden { opacity: 0; pointer-events: none; }
-    .password-card {
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 3rem 2.5rem;
-      max-width: 420px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,.4);
-    }
-    .password-card h2 {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1.8rem;
-      color: var(--white);
-      margin-bottom: .5rem;
-    }
-    .password-card p {
-      font-family: 'DM Mono', monospace;
-      font-size: .75rem;
-      letter-spacing: .2em;
-      color: var(--text-dim);
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-    }
-    #pass-input {
-      width: 100%;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 1rem 1.25rem;
-      color: var(--text);
-      font-size: 1.1rem;
-      text-align: center;
-      letter-spacing: 4px;
-      font-family: 'DM Mono', monospace;
-      margin-bottom: 1.5rem;
-    }
-    #pass-input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-dim);
-    }
-    #unlock-btn {
-      width: 100%;
-      padding: 1rem;
-      background: var(--accent);
-      color: var(--bg);
-      font-family: 'DM Mono', monospace;
-      font-size: .8rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: var(--r);
-      cursor: pointer;
-      transition: all .3s var(--ease);
-    }
-    #unlock-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px var(--accent-glow); }
-    #pass-error {
-      color: var(--danger);
-      font-family: 'DM Mono', monospace;
-      font-size: .7rem;
-      letter-spacing: .15em;
-      margin-top: 1rem;
-      min-height: 1.2em;
-      display: none;
-    }
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      10%, 90% { transform: translateX(-2px); }
-      20%, 80% { transform: translateX(2px); }
-      30%, 50%, 70% { transform: translateX(-4px); }
-      40%, 60% { transform: translateX(4px); }
-    }
-    #password-gate.shake { animation: shake 0.5s; }
-    .password-messenger-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: .75rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: .55rem 1.25rem;
-      border-radius: var(--r);
-      transition: background .25s, color .25s;
-    }
-    .password-messenger-link:hover { background: var(--accent); color: var(--bg); }
 
     /* ─── RESET ──────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -177,26 +51,15 @@
       overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; }
+    img { display: block; max-width: 100%; }
     ul { list-style: none; }
-
-    /* ─── FOCUS VISIBLE ─────────────────────────────── */
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    .form-input:focus-visible,
-    .form-textarea:focus-visible,
-    #pass-input:focus-visible {
-      outline: none;
-    }
 
     /* ─── NOISE TEXTURE ──────────────────────────────── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 9999;
       opacity: .45;
@@ -247,23 +110,34 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.25rem 4rem;
-      background: rgba(11,11,11,0.85);
+      background: rgba(11,11,11,0.8);
       backdrop-filter: blur(18px) saturate(180%);
-      -webkit-backdrop-filter: blur(18px) saturate(180%);
       border-bottom: 1px solid var(--border);
       transition: padding .4s var(--ease);
     }
     nav.scrolled { padding-top: .85rem; padding-bottom: .85rem; }
-    .nav-logo { display: flex; align-items: center; gap: .6rem; z-index: 101; }
-    .nav-logo img { width: 34px; height: 34px; object-fit: contain; opacity: .9; }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .nav-logo img {
+      width: 34px; height: 34px;
+      object-fit: contain;
+      opacity: .9;
+    }
     .nav-logo-text {
       font-family: 'DM Mono', monospace;
-      font-size: clamp(0.6rem, 1.2vw, 0.72rem);
-      letter-spacing: 0.15em;
+      font-size: .72rem;
+      letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--text-mid);
     }
-    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
     .nav-links a {
       font-size: .75rem;
       letter-spacing: .18em;
@@ -297,6 +171,7 @@
       display: flex;
       align-items: center;
       gap: .45rem;
+      cursor: pointer;
     }
     .nav-cta::after { display: none !important; }
     .nav-cta:hover { background: var(--accent) !important; color: var(--bg) !important; }
@@ -307,32 +182,31 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 8px;
+      padding: 4px;
       flex-direction: column;
-      gap: 6px;
-      z-index: 101;
+      gap: 5px;
     }
     .hamburger span {
-      width: 24px; height: 2px;
+      width: 22px; height: 1.5px;
       background: var(--text-mid);
       transition: all .3s var(--ease);
       display: block;
     }
-    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     /* ─── MOBILE MENU ────────────────────────────────── */
     .mobile-menu {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(11,11,11,.98);
+      background: rgba(11,11,11,.97);
       z-index: 99;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
+      gap: 2.5rem;
       opacity: 0;
       pointer-events: none;
       transition: opacity .35s var(--ease);
@@ -344,24 +218,27 @@
       color: var(--text-mid);
       letter-spacing: .06em;
       transition: color .2s;
-      text-align: center;
     }
     .mobile-menu a:hover { color: var(--accent); }
     .mobile-cta-btn {
       font-family: 'DM Mono', monospace !important;
-      font-size: .9rem !important;
+      font-size: .8rem !important;
       letter-spacing: .18em !important;
       text-transform: uppercase;
-      padding: .8rem 2.5rem;
+      padding: .65rem 2rem;
       border: 1px solid var(--accent) !important;
       color: var(--accent) !important;
       border-radius: var(--r);
-      transition: background .25s, color .25s !important;
+      background: transparent;
+      cursor: pointer;
     }
-    .mobile-cta-btn:hover { background: var(--accent) !important; color: var(--bg) !important; }
 
     /* ─── LAYOUT ─────────────────────────────────────── */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
     section { padding: 9rem 0; }
     .section-label {
       font-family: 'DM Mono', monospace;
@@ -374,7 +251,11 @@
       align-items: center;
       gap: .75rem;
     }
-    .section-label::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
+    .section-label::before {
+      content: '';
+      width: 2rem; height: 1px;
+      background: var(--accent);
+    }
     .section-title {
       font-family: 'Shippori Mincho', serif;
       font-size: clamp(2rem, 4vw, 3.2rem);
@@ -407,7 +288,7 @@
       inset: 0;
       background: var(--bg);
       z-index: 9998;
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -423,7 +304,13 @@
       letter-spacing: .1em;
     }
     .loader-mono span { color: var(--accent); }
-    .loader-track { width: 180px; height: 1px; background: var(--border); border-radius: 99px; overflow: hidden; }
+    .loader-track {
+      width: 180px;
+      height: 1px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
     .loader-fill {
       height: 100%;
       background: var(--accent);
@@ -460,7 +347,7 @@
       right: 4%; top: 50%;
       transform: translateY(-50%);
       font-family: 'Shippori Mincho', serif;
-      font-size: clamp(6rem, 15vw, 14rem);
+      font-size: clamp(7rem, 14vw, 14rem);
       color: rgba(255,255,255,0.022);
       line-height: 1;
       pointer-events: none;
@@ -477,18 +364,39 @@
       align-items: center;
       width: 100%;
     }
-    .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+    .hero-greeting {
+      font-family: 'DM Mono', monospace;
+      font-size: .78rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-greeting::before {
+      content: ''; width: 3rem; height: 1px;
+      background: var(--accent);
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
     .eyebrow-pill {
       display: inline-flex;
       align-items: center;
       gap: .5rem;
       font-family: 'DM Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .15em;
+      font-size: .62rem;
+      letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--accent);
       border: 1px solid var(--accent);
-      padding: .35rem 1rem;
+      padding: .3rem .85rem;
       border-radius: 99px;
     }
     .blink-dot {
@@ -499,33 +407,37 @@
       animation: blink 2s ease infinite;
     }
     @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.25; } }
-    .eyebrow-typed {
+    .eyebrow-sep {
       font-family: 'DM Mono', monospace;
       font-size: .68rem;
       letter-spacing: .2em;
       color: var(--text-dim);
-      min-width: 14ch;
     }
     .hero-name {
       font-family: 'Shippori Mincho', serif;
-      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
       font-weight: 700;
-      line-height: 1.05;
+      line-height: 1.0;
       color: var(--white);
-      letter-spacing: -.02em;
-      margin-bottom: .75rem;
+      letter-spacing: -.03em;
+      margin-bottom: .5rem;
     }
     .hero-name .accent-char { color: var(--accent); }
     .hero-sub {
-      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+      font-size: clamp(.95rem, 1.6vw, 1.1rem);
       color: var(--text-dim);
       max-width: 500px;
-      line-height: 1.8;
+      line-height: 1.85;
       border-left: 2px solid var(--accent);
       padding-left: 1.25rem;
       margin: 1.75rem 0 2.75rem;
     }
-    .hero-meta { display: flex; flex-wrap: wrap; gap: .75rem 1.75rem; margin-bottom: 2.75rem; }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem 1.75rem;
+      margin-bottom: 2.75rem;
+    }
     .hero-meta-item {
       font-family: 'DM Mono', monospace;
       font-size: .68rem;
@@ -538,13 +450,17 @@
     }
     .hero-meta-item i { color: var(--accent); }
     a.hero-meta-item:hover { color: var(--text-mid); }
-    .hero-actions { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: .6rem;
-      padding: 1rem 2.2rem;
+      padding: .9rem 2.2rem;
       background: var(--accent);
       color: #0b0b0b;
       font-size: .78rem;
@@ -556,16 +472,24 @@
       transition: transform .25s var(--ease), box-shadow .25s var(--ease);
       position: relative;
       overflow: hidden;
+      border: none;
+      cursor: pointer;
     }
-    .btn-primary::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15); opacity: 0; transition: opacity .2s; }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.15);
+      opacity: 0;
+      transition: opacity .2s;
+    }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px var(--accent-glow); }
     .btn-primary:hover::after { opacity: 1; }
     .btn-ghost {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: .6rem;
-      padding: 1rem 2.2rem;
+      padding: .9rem 2.2rem;
       border: 1px solid var(--border-hv);
       color: var(--text-mid);
       font-size: .78rem;
@@ -575,20 +499,70 @@
       font-family: 'DM Mono', monospace;
       border-radius: var(--r);
       transition: border-color .25s, color .25s, transform .25s var(--ease);
+      background: transparent;
+      cursor: pointer;
     }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
-    .stat-num { font-family: 'Shippori Mincho', serif; font-size: 2rem; font-weight: 600; color: var(--white); line-height: 1; }
+
+    /* Hero stats */
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat {}
+    .stat-num {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+    }
     .stat-num span { color: var(--accent); font-size: 1.3rem; }
-    .stat-lbl { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-dim); margin-top: .3rem; }
+    .stat-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: .3rem;
+    }
 
     /* Hero photo */
-    .hero-photo-wrap { position: relative; flex-shrink: 0; }
-    .photo-frame { width: 280px; aspect-ratio: 3/4; border-radius: var(--r); overflow: hidden; border: 1px solid var(--border-hv); position: relative; }
-    .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%) contrast(1.05); }
-    .photo-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, rgba(11,11,11,.7)); }
-    .photo-corners { position: absolute; inset: -8px; pointer-events: none; z-index: 2; }
-    .photo-corner { position: absolute; width: 18px; height: 18px; }
+    .hero-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .photo-frame {
+      width: 280px;
+      aspect-ratio: 3/4;
+      border-radius: var(--r);
+      overflow: hidden;
+      border: 1px solid var(--border-hv);
+      position: relative;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+    }
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(11,11,11,.7));
+    }
+    .photo-corners {
+      position: absolute;
+      inset: -8px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .photo-corner {
+      position: absolute;
+      width: 18px; height: 18px;
+    }
     .pc-tl { top: 0; left: 0; border-top: 1.5px solid var(--accent); border-left: 1.5px solid var(--accent); }
     .pc-tr { top: 0; right: 0; border-top: 1.5px solid var(--accent); border-right: 1.5px solid var(--accent); }
     .pc-bl { bottom: 0; left: 0; border-bottom: 1.5px solid var(--accent); border-left: 1.5px solid var(--accent); }
@@ -600,18 +574,20 @@
       transform: translateX(-50%);
       white-space: nowrap;
       font-family: 'DM Mono', monospace;
-      font-size: .55rem;
-      letter-spacing: .15em;
+      font-size: .6rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--accent);
       background: var(--bg-3);
       border: 1px solid var(--accent);
-      padding: .4rem 1.1rem;
+      padding: .35rem 1rem;
       border-radius: 99px;
       display: flex;
       align-items: center;
       gap: .45rem;
     }
+
+    /* Hero scroll indicator */
     .hero-scroll {
       position: absolute;
       bottom: 3rem;
@@ -621,126 +597,502 @@
       flex-direction: column;
       align-items: center;
       gap: .5rem;
-      cursor: pointer;
     }
-    .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2.2s ease-in-out infinite; }
-    .scroll-text { font-family: 'DM Mono', monospace; font-size: .58rem; letter-spacing: .25em; color: var(--text-dim); writing-mode: vertical-rl; }
-    @keyframes scrollPulse { 0%,100% { opacity:.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.15); } }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+    .scroll-text {
+      font-family: 'DM Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .25em;
+      color: var(--text-dim);
+      writing-mode: vertical-rl;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity:.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.15); }
+    }
 
     /* ─── TICKER BANNER ──────────────────────────────── */
-    .avail-banner { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: .85rem 0; position: relative; }
+    .avail-banner {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: .85rem 0;
+      position: relative;
+    }
     .avail-banner::before,
-    .avail-banner::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; }
+    .avail-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+    }
     .avail-banner::before { left: 0; background: linear-gradient(to right, var(--bg-2), transparent); }
     .avail-banner::after { right: 0; background: linear-gradient(to left, var(--bg-2), transparent); }
-    .avail-track { display: flex; gap: 2.5rem; animation: tickerScroll 28s linear infinite; width: max-content; }
+    .avail-track {
+      display: flex;
+      gap: 2.5rem;
+      animation: tickerScroll 28s linear infinite;
+      width: max-content;
+    }
     @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .avail-item { display: flex; align-items: center; gap: .6rem; font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
-    .avail-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .avail-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+    .avail-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
 
     /* ─── ABOUT ──────────────────────────────────────── */
     #about { background: var(--bg-2); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-    .about-body { color: var(--text-mid); font-size: 1.05rem; line-height: 1.9; margin-top: 2rem; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .about-body {
+      color: var(--text-mid);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-top: 2rem;
+    }
     .about-body p + p { margin-top: 1.25rem; }
     .about-body strong { color: var(--text); font-weight: 400; }
-    .about-highlight { margin-top: 1.75rem; display: flex; align-items: flex-start; gap: .75rem; border-left: 2px solid var(--accent); padding-left: 1rem; font-size: .95rem; color: var(--text-dim); font-style: italic; }
+    .about-highlight {
+      margin-top: 1.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+      font-size: .95rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
     .about-highlight i { color: var(--accent); margin-top: .25rem; flex-shrink: 0; }
-    .about-card { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
-    .about-card-head { padding: .85rem 1.25rem; border-bottom: 1px solid var(--border); }
+    .about-card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .about-card-head {
+      padding: .85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
     .card-dots { display: flex; gap: .5rem; }
-    .card-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .d-r { background: var(--danger); } .d-y { background: var(--accent); } .d-g { background: var(--success); }
-    .about-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: .9rem 1.25rem; border-bottom: 1px solid var(--border); transition: background .2s; }
+    .card-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .d-r { background: #b85c4a; }
+    .d-y { background: #c8a97e; }
+    .d-g { background: #4a8c6a; }
+    .about-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .9rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      transition: background .2s;
+    }
     .about-row:last-child { border-bottom: none; }
     .about-row:hover { background: rgba(255,255,255,.02); }
-    .row-key { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-dim); flex-shrink: 0; }
-    .row-val { font-size: .85rem; color: var(--text-mid); text-align: right; }
-    .row-val.active { color: var(--success); font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .1em; }
+    .row-key {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+    .row-val {
+      font-size: .88rem;
+      color: var(--text-mid);
+      text-align: right;
+    }
+    .row-val.active {
+      color: #4a8c6a;
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .1em;
+    }
 
     /* ─── SKILLS ─────────────────────────────────────── */
     #skills { background: var(--bg); }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r-card); overflow: hidden; margin-top: 3rem; }
-    .skill-card { background: var(--bg-2); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background .35s var(--ease); }
-    .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); transform: scaleX(0); transition: transform .5s var(--ease-out); transform-origin: left; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .skill-card {
+      background: var(--bg-2);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .35s var(--ease);
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: scaleX(0);
+      transition: transform .5s var(--ease-out);
+      transform-origin: left;
+    }
     .skill-card:hover { background: var(--bg-3); }
     .skill-card:hover::before { transform: scaleX(1); }
-    .skill-card-ico { font-size: 1.4rem; color: var(--accent); margin-bottom: 1.25rem; opacity: .85; }
-    .skill-card-name { font-family: 'Shippori Mincho', serif; font-size: 1.15rem; font-weight: 600; color: var(--white); margin-bottom: .6rem; }
-    .skill-card-desc { font-size: .88rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1.5rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
-    .skill-tag { font-family: 'DM Mono', monospace; font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; padding: .3rem .65rem; border: 1px solid var(--border-hv); border-radius: 2px; color: var(--text-dim); transition: border-color .25s, color .25s; }
+    .skill-card-ico {
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      opacity: .85;
+    }
+    .skill-card-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: .6rem;
+    }
+    .skill-card-desc {
+      font-size: .88rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .skill-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .3rem .65rem;
+      border: 1px solid var(--border-hv);
+      border-radius: 2px;
+      color: var(--text-dim);
+      transition: border-color .25s, color .25s;
+    }
     .skill-card:hover .skill-tag { border-color: var(--accent); color: var(--accent); }
 
     /* ─── EXPERIENCE ─────────────────────────────────── */
     #experience { background: var(--bg-2); }
     .timeline { position: relative; }
-    .timeline-track { position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, var(--accent), var(--border) 80%, transparent); }
-    .timeline-item { padding-left: 2.5rem; margin-bottom: 3.5rem; position: relative; }
+    .timeline-track {
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--border) 80%, transparent);
+    }
+    .timeline-item {
+      padding-left: 2.5rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
     .timeline-item:last-child { margin-bottom: 0; }
-    .t-dot { position: absolute; left: -5px; top: 8px; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg-2); box-shadow: 0 0 0 4px var(--accent-dim); }
-    .t-date { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
-    .t-role { font-family: 'Shippori Mincho', serif; font-size: 1.4rem; font-weight: 600; color: var(--white); margin-bottom: .5rem; }
-    .t-org { display: flex; align-items: center; gap: .75rem; font-size: .88rem; color: var(--text-mid); margin-bottom: 1.25rem; }
-    .t-org-icon { width: 28px; height: 28px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r); display: flex; align-items: center; justify-content: center; font-size: .75rem; color: var(--accent); flex-shrink: 0; }
+    .t-dot {
+      position: absolute;
+      left: -5px; top: 8px;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg-2);
+      box-shadow: 0 0 0 4px var(--accent-dim);
+    }
+    .t-date {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+    .t-role {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .t-org {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .88rem;
+      color: var(--text-mid);
+      margin-bottom: 1.25rem;
+    }
+    .t-org-icon {
+      width: 28px; height: 28px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
     .t-items { display: flex; flex-direction: column; gap: .75rem; }
-    .t-item { display: flex; align-items: flex-start; gap: .85rem; font-size: .9rem; color: var(--text-mid); line-height: 1.75; padding: .85rem 1.1rem; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r); transition: border-color .25s, color .25s; }
+    .t-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      padding: .85rem 1.1rem;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      transition: border-color .25s, color .25s;
+    }
     .t-item:hover { border-color: var(--border-hv); color: var(--text); }
     .t-arrow { color: var(--accent); flex-shrink: 0; margin-top: .3rem; font-size: .7rem; }
 
     /* ─── EDUCATION ──────────────────────────────────── */
     #education { background: var(--bg); }
-    .edu-card { display: grid; grid-template-columns: auto 1fr auto; gap: 2rem; align-items: center; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r); padding: 2.5rem; transition: border-color .25s, background .25s; position: relative; overflow: hidden; }
-    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); transform: scaleX(0); transition: transform .5s var(--ease-out); transform-origin: left; }
+    .edu-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 2.5rem 2.5rem;
+      transition: border-color .25s, background .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .edu-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: scaleX(0);
+      transition: transform .5s var(--ease-out);
+      transform-origin: left;
+    }
     .edu-card:hover { border-color: var(--border-hv); background: var(--bg-3); }
     .edu-card:hover::before { transform: scaleX(1); }
-    .edu-icon { width: 56px; height: 56px; background: var(--accent-dim); border: 1px solid var(--accent); border-radius: var(--r); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--accent); flex-shrink: 0; }
-    .edu-degree { font-family: 'Shippori Mincho', serif; font-size: 1.2rem; font-weight: 600; color: var(--white); margin-bottom: .35rem; }
-    .edu-school { font-size: .95rem; color: var(--text-mid); margin-bottom: .2rem; }
-    .edu-address { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .1em; color: var(--text-dim); }
-    .edu-period { text-align: right; flex-shrink: 0; }
-    .edu-period-dates { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .15em; color: var(--accent); }
+    .edu-icon {
+      width: 56px; height: 56px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      border-radius: var(--r);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .edu-degree {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: .35rem;
+    }
+    .edu-school {
+      font-size: .95rem;
+      color: var(--text-mid);
+      margin-bottom: .2rem;
+    }
+    .edu-address {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .1em;
+      color: var(--text-dim);
+    }
+    .edu-period {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .edu-period-dates {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .15em;
+      color: var(--accent);
+    }
 
     /* ─── CERTIFICATIONS ─────────────────────────────── */
     #certifications { background: var(--bg-2); }
-    .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r-card); overflow: hidden; margin-top: 3rem; }
-    .cert-card { background: var(--bg-2); padding: 2rem 1.75rem; display: flex; align-items: flex-start; gap: 1.25rem; transition: background .3s var(--ease); position: relative; overflow: hidden; }
-    .cert-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-dim), transparent); }
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .cert-card {
+      background: var(--bg-2);
+      padding: 2rem 1.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      transition: background .3s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
+    }
     .cert-card:hover { background: var(--bg-3); }
-    .cert-ico-wrap { width: 40px; height: 40px; border-radius: var(--r); background: var(--accent-dim); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1rem; flex-shrink: 0; }
-    .cert-name { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; color: var(--white); line-height: 1.3; margin-bottom: .45rem; }
-    .cert-detail { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .1em; color: var(--text-dim); line-height: 1.6; }
+    .cert-ico-wrap {
+      width: 40px; height: 40px;
+      border-radius: var(--r);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .cert-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: .45rem;
+    }
+    .cert-detail {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .1em;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
 
     /* ─── CONTACT ────────────────────────────────────── */
     #contact { background: var(--bg); }
-    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-    .contact-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.9; margin: 1.5rem 0 2.5rem; }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .contact-desc {
+      color: var(--text-mid);
+      font-size: 1rem;
+      line-height: 1.9;
+      margin: 1.5rem 0 2.5rem;
+    }
     .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-    .contact-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: var(--r); color: var(--text-mid); transition: border-color .25s, color .25s, background .25s, transform .3s var(--ease); font-size: .9rem; }
-    .contact-link:hover { border-color: var(--accent); color: var(--white); background: var(--accent-dim); transform: translateX(6px); }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      color: var(--text-mid);
+      transition: border-color .25s, color .25s, background .25s, transform .3s var(--ease);
+      font-size: .9rem;
+    }
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--white);
+      background: var(--accent-dim);
+      transform: translateX(6px);
+    }
     .contact-link-icon { color: var(--accent); flex-shrink: 0; font-size: .9rem; }
-    .contact-right { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r); padding: 2.5rem; }
+    .contact-right {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 2.5rem;
+    }
     .form-group { margin-bottom: 1.5rem; }
-    .form-label { display: block; font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: .6rem; }
+    .form-label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: .6rem;
+    }
     .form-input, .form-textarea {
       width: 100%;
       background: var(--bg-3);
       border: 1px solid var(--border);
       border-radius: var(--r);
-      padding: .95rem 1.1rem;
+      padding: .85rem 1rem;
       color: var(--text);
       font-family: 'Outfit', sans-serif;
-      font-size: .95rem;
+      font-size: .9rem;
       font-weight: 300;
       outline: none;
       transition: border-color .25s, box-shadow .25s;
     }
     .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
-    .form-input:focus, .form-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .form-input.field-error {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(217,83,79,0.15);
+    }
     .form-textarea { resize: vertical; min-height: 130px; }
+
+    /* ─── FORM STATUS MESSAGE ─────────────────────────── */
+    #form-status {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      min-height: 1.2rem;
+      margin-bottom: .75rem;
+      transition: opacity .3s;
+      opacity: 0;
+    }
+    #form-status.visible { opacity: 1; }
+
     .form-submit {
       width: 100%;
-      padding: 1.1rem;
+      padding: 1rem;
       background: var(--accent);
       color: #0b0b0b;
       font-family: 'DM Mono', monospace;
@@ -751,380 +1103,329 @@
       border: none;
       border-radius: var(--r);
       cursor: pointer;
-      transition: opacity .25s, transform .25s var(--ease), box-shadow .25s;
+      transition: opacity .25s, transform .25s var(--ease), box-shadow .25s, background .3s, color .3s;
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: .6rem;
+      align-items: center;
+      gap: 0.5rem;
     }
     .form-submit:hover:not(:disabled) { opacity: .88; transform: translateY(-2px); box-shadow: 0 8px 24px var(--accent-glow); }
-    .form-submit:active { transform: translateY(0); }
-    .form-submit:disabled { cursor: not-allowed; opacity: .6; }
-    .form-status {
-      margin-top: 1rem;
-      padding: .75rem 1rem;
-      border-radius: var(--r);
+    .form-submit:active:not(:disabled) { transform: translateY(0); }
+    .form-submit:disabled { cursor: not-allowed; opacity: 0.7; }
+
+    /* Spinner Animation for Button */
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    .fa-spin-custom { animation: spin 1s linear infinite; }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
       font-family: 'DM Mono', monospace;
-      font-size: .65rem;
+      font-size: .62rem;
+      letter-spacing: .15em;
+      color: var(--text-dim);
+    }
+    .footer-deco {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,.06);
+      letter-spacing: .2em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
       letter-spacing: .15em;
       text-transform: uppercase;
-      display: none;
+      color: var(--text-dim);
+      transition: color .2s;
+      cursor: pointer;
     }
-    .form-status.success {
-      display: block;
-      background: rgba(74,140,106,0.12);
-      border: 1px solid rgba(74,140,106,0.4);
-      color: var(--success);
-    }
-    .form-status.error {
-      display: block;
-      background: rgba(184,92,74,0.12);
-      border: 1px solid rgba(184,92,74,0.4);
-      color: var(--danger);
-    }
-    .spinner {
-      width: 14px; height: 14px;
-      border: 2px solid rgba(0,0,0,.3);
-      border-top-color: #0b0b0b;
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-      display: none;
-    }
-    .form-submit.loading .spinner { display: block; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .footer-links a:hover { color: var(--accent); }
 
-    /* ─── CV DOWNLOAD MODAL ──────────────────────────── */
-    #cv-modal-overlay {
+    /* ─── CUSTOM MODAL ───────────────────────────────── */
+    #cv-modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.7);
       z-index: 10000;
+      background: rgba(11, 11, 11, 0.85);
+      backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      pointer-events: none;
-      transition: opacity .3s var(--ease);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      visibility: hidden;
+      transition: opacity 0.3s var(--ease), visibility 0.3s;
     }
-    #cv-modal-overlay.open { opacity: 1; pointer-events: all; }
-    .cv-modal {
+    #cv-modal.open { opacity: 1; visibility: visible; }
+
+    .modal-content {
       background: var(--bg-3);
       border: 1px solid var(--border-hv);
       border-radius: var(--r);
-      padding: 2.5rem;
-      max-width: 400px;
       width: 90%;
-      text-align: center;
-      transform: translateY(20px) scale(.96);
-      transition: transform .35s var(--ease-out);
-      box-shadow: 0 24px 48px rgba(0,0,0,.5);
+      max-width: 400px;
+      padding: 2.5rem;
+      position: relative;
+      transform: translateY(30px) scale(0.95);
+      transition: transform 0.4s var(--ease-out);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
-    #cv-modal-overlay.open .cv-modal { transform: translateY(0) scale(1); }
-    .cv-modal h3 {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1.4rem;
-      color: var(--white);
-      margin-bottom: .5rem;
-    }
-    .cv-modal p {
-      font-family: 'DM Mono', monospace;
-      font-size: .68rem;
-      letter-spacing: .15em;
+    #cv-modal.open .modal-content { transform: translateY(0) scale(1); }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none;
+      border: none;
       color: var(--text-dim);
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color .2s;
+      line-height: 1;
     }
-    #cv-pass-input {
+    .modal-close:hover { color: var(--white); }
+
+    .modal-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .modal-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .modal-input-group { position: relative; margin-bottom: 1.5rem; }
+    .modal-input {
       width: 100%;
-      background: var(--bg-2);
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--r);
-      padding: .85rem 1rem;
-      color: var(--text);
+      padding: .9rem 1rem;
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
       font-size: 1rem;
-      text-align: center;
-      letter-spacing: 4px;
-      font-family: 'DM Mono', monospace;
-      margin-bottom: 1rem;
+      outline: none;
+      transition: border-color .25s, box-shadow .25s;
     }
-    #cv-pass-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
-    .cv-modal-actions { display: flex; gap: .75rem; }
-    .cv-modal-actions button {
-      flex: 1;
-      padding: .75rem;
-      border-radius: var(--r);
+    .modal-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .modal-input.error { border-color: var(--error); box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.2); }
+
+    .modal-msg {
       font-family: 'DM Mono', monospace;
-      font-size: .7rem;
-      letter-spacing: .15em;
+      font-size: 0.65rem;
+      color: var(--error);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      margin-top: 0.5rem;
+      min-height: 1rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .modal-msg.visible { opacity: 1; }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    .modal-btn {
+      flex: 1;
+      padding: .8rem;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: var(--r);
       cursor: pointer;
-      transition: all .25s var(--ease);
-      border: none;
-    }
-    .cv-btn-confirm { background: var(--accent); color: var(--bg); }
-    .cv-btn-confirm:hover { transform: translateY(-1px); box-shadow: 0 8px 20px var(--accent-glow); }
-    .cv-btn-cancel { background: transparent; border: 1px solid var(--border-hv) !important; color: var(--text-mid); }
-    .cv-btn-cancel:hover { border-color: var(--danger) !important; color: var(--danger); }
-    #cv-modal-error {
-      color: var(--danger);
       font-family: 'DM Mono', monospace;
-      font-size: .65rem;
-      letter-spacing: .12em;
-      margin-top: .75rem;
-      min-height: 1.2em;
-      display: none;
+      transition: all .25s var(--ease);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
     }
+    .modal-btn-cancel {
+      background: transparent;
+      border: 1px solid var(--border-hv);
+      color: var(--text-mid);
+    }
+    .modal-btn-cancel:hover { border-color: var(--white); color: var(--white); }
+    .modal-btn-confirm {
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: var(--bg);
+    }
+    .modal-btn-confirm:hover {
+      background: #dba968;
+      border-color: #dba968;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+    .modal-btn:active { transform: translateY(0); }
 
-    /* ─── FOOTER ─────────────────────────────────────── */
-    footer { padding: 3rem 0; border-top: 1px solid var(--border); background: var(--bg); }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-copy { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .15em; color: var(--text-dim); }
-    .footer-deco { font-family: 'Shippori Mincho', serif; font-size: 1rem; color: rgba(255,255,255,.06); letter-spacing: .2em; }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-dim); transition: color .2s; }
-    .footer-links a:hover { color: var(--accent); }
+    /* Shake Animation */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    .shake-anim { animation: shake 0.3s ease-in-out; }
 
-    /* ─── RESPONSIVE DESIGN (IMPROVED) ───────────────────────── */
-    /* Tablet (Landscape & Portrait) */
+    /* ─── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 1024px) {
       .container { padding: 0 2.5rem; }
-      nav { padding: 1rem 2.5rem; }
+      nav { padding: 1.25rem 2.5rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .mobile-menu { display: flex; }
       .hero-inner { grid-template-columns: 1fr; }
-      .hero-photo-wrap { display: none; } /* Hide photo on smaller screens to prioritize text */
+      .hero-photo-wrap { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
       .certs-grid { grid-template-columns: repeat(2, 1fr); }
       .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
       .edu-card { grid-template-columns: auto 1fr; }
-      .edu-period { display: none; } /* Move date inside or hide to save space */
+      .edu-period { display: none; }
     }
-
-    /* Mobile (Portrait) */
     @media (max-width: 640px) {
       .container { padding: 0 1.25rem; }
-      nav { padding: .85rem 1.25rem; }
-      section { padding: 6rem 0; }
-      
-      /* Hero Adjustments */
-      .hero-deco { display: none; } /* Hide decorative text to save space */
+      nav { padding: 1rem 1.25rem; }
+      section { padding: 5rem 0; }
+      .hero-deco { display: none; }
       .hero-bg-line, .hero-bg-line-2 { display: none; }
-      .hero-eyebrow { flex-direction: column; align-items: flex-start; gap: .5rem; }
-      .hero-name { margin-bottom: 1rem; }
-      .hero-sub { border-left-width: 1px; padding-left: 1rem; margin: 1.25rem 0 2rem; }
-      .hero-actions { flex-direction: column; width: 100%; gap: .75rem; }
-      .btn-primary, .btn-ghost { width: 100%; }
-      .hero-stats { width: 100%; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
-      .stat-num { font-size: 1.75rem; }
-
-      /* Typography */
-      .section-title { line-height: 1.25; }
-      .password-card { padding: 2rem 1.5rem; }
-
-      /* Grids & Cards */
       .skills-grid { grid-template-columns: 1fr; }
       .certs-grid { grid-template-columns: 1fr; }
-      .skill-card { padding: 2rem 1.5rem; }
-      .edu-card { grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem; text-align: left; }
-      .edu-icon { width: 48px; height: 48px; font-size: 1.2rem; }
-      
-      /* Timeline */
-      .timeline { padding-left: .5rem; }
-      .timeline-track { left: 0; }
-      .timeline-item { padding-left: 2rem; margin-bottom: 2.5rem; }
-      .t-role { font-size: 1.2rem; }
-      .t-item { padding: .75rem .9rem; font-size: .85rem; }
-      
-      /* Contact */
-      .contact-right { padding: 1.75rem 1.25rem; }
-      .form-input, .form-textarea { font-size: 16px; /* Prevent zoom on iOS */ padding: .85rem 1rem; }
-      .form-submit { padding: 1rem; }
-      
-      /* Modal */
-      .cv-modal { padding: 1.75rem; }
-    }
-
-    /* Very Small Mobile Optimization */
-    @media (max-width: 380px) {
-      .hero-name { font-size: 2.4rem; }
-      .mobile-menu a { font-size: 1.75rem; }
-      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
-    }
-
-    /* ─── REDUCED MOTION ─────────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .reveal { opacity: 1; transform: none; }
-      .avail-track { animation: none; }
-      html { scroll-behavior: auto; }
+      .edu-card { grid-template-columns: auto 1fr; gap: 1rem; padding: 1.5rem; }
+      .modal-content { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── SKIP LINK ──────────────────────────────────── -->
-<a href="#main-content" class="skip-link">Skip to content</a>
-
-<!-- ─── PASSWORD GATE ──────────────────────────────── -->
-<div id="password-gate" role="dialog" aria-modal="true" aria-label="Portfolio access">
-  <div class="password-card">
-    <div style="margin-bottom: 1.5rem;">
-      <i class="fa-solid fa-lock fa-3x" style="color: var(--accent);" aria-hidden="true"></i>
-    </div>
-    <h2>Portfolio Locked</h2>
-    <p>Enter passcode to continue</p>
-    <input
-      type="password"
-      id="pass-input"
-      placeholder="••••••"
-      maxlength="6"
-      autocomplete="off"
-      aria-label="Enter passcode"
-    />
-    <button id="unlock-btn" type="button">
-      Unlock <i class="fa-solid fa-key fa-xs" style="margin-left: .4rem;" aria-hidden="true"></i>
-    </button>
-    <div id="pass-error" role="alert" aria-live="polite"></div>
-    <div style="margin-top: 2rem; font-family: 'DM Mono', monospace; font-size: .75rem; color: var(--text-dim); text-align: center;">
-      Please contact me first to access the website.
-    </div>
-    <div style="margin-top: 1rem; display: flex; justify-content: center;">
-      <a href="https://m.me/JAmesGZLImos" target="_blank" rel="noopener noreferrer" class="password-messenger-link">
-        <i class="fa-brands fa-facebook-messenger" aria-hidden="true"></i>
-        Facebook Messenger
-      </a>
-    </div>
+<!-- ─── LOADER ───────────────────────────────────────── -->
+<div id="loader">
+  <div class="loader-mono">JVG<span>·</span>Limos</div>
+  <div class="loader-track">
+    <div class="loader-fill"></div>
   </div>
-</div>
-
-<!-- ─── LOADER ─────────────────────────────────────── -->
-<div id="loader" aria-hidden="true">
-  <div class="loader-mono">GZ<span>·</span>CAPS</div>
-  <div class="loader-track"><div class="loader-fill"></div></div>
   <div class="loader-sub">Loading portfolio</div>
 </div>
 
-<!-- ─── CV DOWNLOAD MODAL ──────────────────────────── -->
-<div id="cv-modal-overlay" role="dialog" aria-modal="true" aria-label="CV download verification">
-  <div class="cv-modal">
-    <div style="margin-bottom: 1rem;">
-      <i class="fa-solid fa-file-pdf fa-2x" style="color: var(--accent);" aria-hidden="true"></i>
-    </div>
-    <h3>Download CV</h3>
-    <p>Enter passcode to proceed</p>
-    <input
-      type="password"
-      id="cv-pass-input"
-      placeholder="••••••"
-      maxlength="6"
-      autocomplete="off"
-      aria-label="CV download passcode"
-    />
-    <div class="cv-modal-actions">
-      <button class="cv-btn-cancel" id="cv-cancel-btn" type="button">Cancel</button>
-      <button class="cv-btn-confirm" id="cv-confirm-btn" type="button">
-        <i class="fa-solid fa-download fa-xs" aria-hidden="true"></i> Download
-      </button>
-    </div>
-    <div id="cv-modal-error" role="alert" aria-live="polite"></div>
-  </div>
-</div>
+<!-- ─── SCROLL PROGRESS ──────────────────────────────── -->
+<div id="scroll-progress"></div>
 
-<!-- ─── SCROLL PROGRESS ────────────────────────────── -->
-<div id="scroll-progress" aria-hidden="true"></div>
-
-<!-- ─── BACK TO TOP ────────────────────────────────── -->
-<button id="back-to-top" aria-label="Back to top">
-  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+<!-- ─── BACK TO TOP ──────────────────────────────────── -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<!-- ─── MOBILE MENU ────────────────────────────────── -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#experience">Experience</a>
-  <a href="#education">Education</a>
-  <a href="#contact">Contact</a>
-  <a href="#" class="mobile-cta-btn" id="mobile-cv-btn">
-    <i class="fa-solid fa-download fa-xs" aria-hidden="true"></i> Download CV
+<!-- ─── MOBILE MENU ──────────────────────────────────── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"      onclick="closeMobile()">About</a>
+  <a href="#skills"     onclick="closeMobile()">Skills</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#education"  onclick="closeMobile()">Education</a>
+  <a href="#contact"    onclick="closeMobile()">Contact</a>
+  <a href="#" class="mobile-cta-btn" onclick="event.preventDefault(); openModal();">
+    <i class="fa-solid fa-download fa-xs"></i> Download CV
   </a>
 </div>
 
-<!-- ─── NAV ───────────────────────────────────────── -->
-<nav id="navbar" role="navigation" aria-label="Main navigation">
-  <a href="#hero" class="nav-logo" aria-label="James Limos — Home">
-    <img src="favicon.png" alt="" width="34" height="34" />
+<!-- ─── NAV ─────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <img src="favicon.png" alt="JVL Logo" />
     <span class="nav-logo-text">James Limos</span>
   </a>
   <div class="nav-links">
-    <a href="#about" data-s="about">About</a>
-    <a href="#skills" data-s="skills">Skills</a>
+    <a href="#about"      data-s="about">About</a>
+    <a href="#skills"     data-s="skills">Skills</a>
     <a href="#experience" data-s="experience">Experience</a>
-    <a href="#education" data-s="education">Education</a>
-    <a href="#contact" data-s="contact">Contact</a>
-    <a href="#" class="nav-cta" id="nav-cv-btn">
-      <i class="fa-solid fa-download fa-xs" aria-hidden="true"></i> Download CV
+    <a href="#education"  data-s="education">Education</a>
+    <a href="#contact"    data-s="contact">Contact</a>
+    <a href="#" class="nav-cta" onclick="event.preventDefault(); openModal();">
+      <i class="fa-solid fa-download fa-xs"></i> Download CV
     </a>
   </div>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+  <div class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
-  </button>
+  </div>
 </nav>
 
-<!-- ─── MAIN CONTENT ──────────────────────────────── -->
-<main id="main-content">
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg-line"></div>
+  <div class="hero-bg-line hero-bg-line-2"></div>
+  <div class="hero-deco">IT</div>
 
-<!-- ─── HERO ───────────────────────────────────────── -->
-<section id="hero" aria-label="Introduction">
-  <div class="hero-bg-line" aria-hidden="true"></div>
-  <div class="hero-bg-line hero-bg-line-2" aria-hidden="true"></div>
-  <div class="hero-deco" aria-hidden="true">IT</div>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-left">
         <div class="hero-eyebrow">
           <div class="eyebrow-pill">
-            <span class="blink-dot" aria-hidden="true"></span>
+            <span class="blink-dot"></span>
             Open to Work
           </div>
-          <span class="eyebrow-typed" id="typed-eyebrow" aria-live="polite"></span>
+          <span class="eyebrow-sep" id="typed-eyebrow">IT Graduate · Philippines</span>
         </div>
+
         <h1 class="hero-name reveal">
           James<span class="accent-char">V</span>incent<br/>
           G. Limos<span class="accent-char">.</span>
         </h1>
+
         <p class="hero-sub reveal reveal-delay-1">
-          I know some things about IT, web development, and database systems. I like learning new tools so I can do my work better. I enjoy solving problems and working with other people to finish projects. I want to learn more, get more experience, and do my best in a company that helps people grow and work together.
+          Passionate IT professional with a strong foundation in web development,
+          database management, and data systems. Ready to contribute and grow
+          within a dynamic organization.
         </p>
+
         <div class="hero-meta reveal reveal-delay-2">
           <a href="tel:+639686690719" class="hero-meta-item">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i> +63 968 669 0719
+            <i class="fa-solid fa-phone"></i> +63 968 669 0719
           </a>
           <a href="mailto:jameslimos1512@gmail.com" class="hero-meta-item">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i> jameslimos1512@gmail.com
+            <i class="fa-solid fa-envelope"></i> jameslimos1512@gmail.com
           </a>
-          <a href="https://maps.app.goo.gl/4bjEkDcSSzQepEtp7" target="_blank" rel="noopener noreferrer" class="hero-meta-item">
-            <i class="fa-solid fa-location-dot" aria-hidden="true"></i> San Nicolas, Pangasinan
-          </a>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-location-dot"></i> San Nicolas, Pangasinan
+          </div>
         </div>
+
         <div class="hero-actions reveal reveal-delay-3">
           <a href="#experience" class="btn-primary">
-            <i class="fa-solid fa-briefcase fa-xs" aria-hidden="true"></i>
+            <i class="fa-solid fa-briefcase fa-xs"></i>
             View Experience
           </a>
           <a href="#contact" class="btn-ghost">
-            <i class="fa-solid fa-paper-plane fa-xs" aria-hidden="true"></i>
+            <i class="fa-solid fa-paper-plane fa-xs"></i>
             Get In Touch
           </a>
         </div>
+
         <div class="hero-stats reveal reveal-delay-4">
           <div class="hero-stat">
             <div class="stat-num" data-count="3" data-suffix="+">0</div>
@@ -1144,27 +1445,34 @@
           </div>
         </div>
       </div>
+
+      <!-- Photo -->
       <div class="hero-photo-wrap">
-        <div class="photo-corners" aria-hidden="true">
+        <div class="photo-corners">
           <div class="photo-corner pc-tl"></div>
           <div class="photo-corner pc-tr"></div>
           <div class="photo-corner pc-bl"></div>
           <div class="photo-corner pc-br"></div>
         </div>
         <div class="photo-frame">
-          <img src="gz.jpg" alt="James Vincent G Limos" width="280" height="373" loading="eager" />
+          <img src="gz.jpg" alt="James Vincent G Limos" loading="eager" />
         </div>
         <div class="photo-badge">
-          <span class="blink-dot" aria-hidden="true"></span>
+          <span class="blink-dot"></span>
           Available for Opportunities
         </div>
       </div>
     </div>
   </div>
+
+  <div class="hero-scroll">
+    <span class="scroll-text">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
-<!-- ─── TICKER ─────────────────────────────────────── -->
-<div class="avail-banner" aria-hidden="true">
+<!-- ─── TICKER ───────────────────────────────────────── -->
+<div class="avail-banner">
   <div class="avail-track">
     <div class="avail-item"><span class="avail-dot"></span>Open to IT Roles</div>
     <div class="avail-item"><span class="avail-dot"></span>Web Development</div>
@@ -1182,15 +1490,16 @@
     <div class="avail-item"><span class="avail-dot"></span>Quick Learner</div>
   </div>
 </div>
-<div class="section-divider" aria-hidden="true"></div>
 
-<!-- ─── ABOUT ──────────────────────────────────────── -->
-<section id="about" aria-labelledby="about-title">
+<div class="section-divider"></div>
+
+<!-- ─── ABOUT ────────────────────────────────────────── -->
+<section id="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-left">
         <div class="section-label reveal">01 — About</div>
-        <h2 class="section-title reveal reveal-delay-1" id="about-title">The Person<br/>Behind the Screen.</h2>
+        <h2 class="section-title reveal reveal-delay-1">The Person<br/>Behind the Screen.</h2>
         <div class="about-body reveal reveal-delay-2">
           <p>
             I am a graduate of <strong>Bachelor of Science in Information Technology</strong> from
@@ -1208,57 +1517,60 @@
             my best to help support the team.
           </p>
           <div class="about-highlight">
-            <i class="fa-solid fa-quote-left fa-xs" aria-hidden="true"></i>
+            <i class="fa-solid fa-quote-left fa-xs"></i>
             Committed to growth, adaptable to challenge, and eager to make a lasting impact.
           </div>
         </div>
       </div>
-      <div class="about-card reveal reveal-delay-2" role="table" aria-label="Quick facts">
-        <div class="about-card-head" aria-hidden="true">
+
+      <div class="about-card reveal reveal-delay-2">
+        <div class="about-card-head">
           <div class="card-dots">
             <span class="card-dot d-r"></span>
             <span class="card-dot d-y"></span>
             <span class="card-dot d-g"></span>
           </div>
         </div>
-        <div class="about-row" role="row">
-          <div class="row-key" role="cell">Graduation</div>
-          <div class="row-val" role="cell">October 3, 2025</div>
+        <div class="about-row">
+          <div class="row-key">Graduation</div>
+          <div class="row-val">October 3, 2025</div>
         </div>
-        <div class="about-row" role="row">
-          <div class="row-key" role="cell">Status</div>
-          <div class="row-val active" role="cell">▸ Available for Work</div>
+        <div class="about-row">
+          <div class="row-key">Status</div>
+          <div class="row-val active">▸ Available for Work</div>
         </div>
-        <div class="about-row" role="row">
-          <div class="row-key" role="cell">Relocate</div>
-          <div class="row-val" role="cell">Yes, open</div>
+        <div class="about-row">
+          <div class="row-key">Relocate</div>
+          <div class="row-val">Yes, open</div>
         </div>
-        <div class="about-row" role="row">
-          <div class="row-key" role="cell">Languages</div>
-          <div class="row-val" role="cell">English · Filipino</div>
+        <div class="about-row">
+          <div class="row-key">Languages</div>
+          <div class="row-val">English · Filipino</div>
         </div>
-        <div class="about-row" role="row">
-          <div class="row-key" role="cell">Location</div>
-          <div class="row-val" role="cell">San Nicolas, Pangasinan</div>
+        <div class="about-row">
+          <div class="row-key">Location</div>
+          <div class="row-val">San Nicolas, Pangasinan</div>
         </div>
-        <div class="about-row" role="row">
-          <div class="row-key" role="cell">Availability</div>
-          <div class="row-val active" role="cell">▸ Immediate</div>
+        <div class="about-row">
+          <div class="row-key">Availability</div>
+          <div class="row-val active">▸ Immediate</div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<div class="section-divider" aria-hidden="true"></div>
 
-<!-- ─── SKILLS ─────────────────────────────────────── -->
-<section id="skills" aria-labelledby="skills-title">
+<div class="section-divider"></div>
+
+<!-- ─── SKILLS ───────────────────────────────────────── -->
+<section id="skills">
   <div class="container">
     <div class="section-label reveal">02 — Expertise</div>
-    <h2 class="section-title reveal reveal-delay-1" id="skills-title">Skills &amp;<br/>Capabilities.</h2>
+    <h2 class="section-title reveal reveal-delay-1">Skills &amp;<br/>Capabilities.</h2>
     <div class="skills-grid">
+
       <div class="skill-card reveal">
-        <div class="skill-card-ico" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
+        <div class="skill-card-ico"><i class="fa-solid fa-code"></i></div>
         <div class="skill-card-name">Web Development</div>
         <div class="skill-card-desc">Building functional web applications from the ground up</div>
         <div class="skill-tags">
@@ -1269,8 +1581,9 @@
           <span class="skill-tag">MySQL</span>
         </div>
       </div>
+
       <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-card-ico" aria-hidden="true"><i class="fa-solid fa-file-excel"></i></div>
+        <div class="skill-card-ico"><i class="fa-solid fa-file-excel"></i></div>
         <div class="skill-card-name">Microsoft Office</div>
         <div class="skill-card-desc">Proficient in productivity and documentation tools</div>
         <div class="skill-tags">
@@ -1279,8 +1592,9 @@
           <span class="skill-tag">PowerPoint</span>
         </div>
       </div>
+
       <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-card-ico" aria-hidden="true"><i class="fa-solid fa-palette"></i></div>
+        <div class="skill-card-ico"><i class="fa-solid fa-palette"></i></div>
         <div class="skill-card-name">Graphic Design</div>
         <div class="skill-card-desc">Visual communication, poster creation, and layouting</div>
         <div class="skill-tags">
@@ -1289,8 +1603,9 @@
           <span class="skill-tag">Visual Comm.</span>
         </div>
       </div>
+
       <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-card-ico" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
+        <div class="skill-card-ico"><i class="fa-solid fa-database"></i></div>
         <div class="skill-card-name">Database Management</div>
         <div class="skill-card-desc">Designing and querying relational databases efficiently</div>
         <div class="skill-tags">
@@ -1299,8 +1614,9 @@
           <span class="skill-tag">Queries</span>
         </div>
       </div>
+
       <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-card-ico" aria-hidden="true"><i class="fa-solid fa-users"></i></div>
+        <div class="skill-card-ico"><i class="fa-solid fa-users"></i></div>
         <div class="skill-card-name">Teamwork &amp; Communication</div>
         <div class="skill-card-desc">Collaborative work across departments with clear communication</div>
         <div class="skill-tags">
@@ -1308,8 +1624,9 @@
           <span class="skill-tag">Communication</span>
         </div>
       </div>
+
       <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-card-ico" aria-hidden="true"><i class="fa-solid fa-bolt"></i></div>
+        <div class="skill-card-ico"><i class="fa-solid fa-bolt"></i></div>
         <div class="skill-card-name">Willingness to Learn</div>
         <div class="skill-card-desc">Fast learner with adaptability in dynamic environments</div>
         <div class="skill-tags">
@@ -1318,57 +1635,81 @@
           <span class="skill-tag">Adaptable</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
-<div class="section-divider" aria-hidden="true"></div>
 
-<!-- ─── EXPERIENCE ─────────────────────────────────── -->
-<section id="experience" aria-labelledby="exp-title">
+<div class="section-divider"></div>
+
+<!-- ─── EXPERIENCE ───────────────────────────────────── -->
+<section id="experience">
   <div class="container">
     <div class="section-label reveal">03 — Experience</div>
-    <h2 class="section-title reveal reveal-delay-1" id="exp-title" style="margin-bottom: 3.5rem;">Work History.</h2>
+    <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 3.5rem;">Work History.</h2>
+
     <div class="timeline">
-      <div class="timeline-track" aria-hidden="true"></div>
+      <div class="timeline-track"></div>
+
       <div class="timeline-item reveal">
-        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-dot"></div>
         <div class="t-date">February 2026 — May 2026</div>
-        <h3 class="t-role">Store Auxiliary</h3>
+        <div class="t-role">Store Auxiliary</div>
         <div class="t-org">
-          <div class="t-org-icon" aria-hidden="true"><i class="fa-solid fa-store"></i></div>
+          <div class="t-org-icon"><i class="fa-solid fa-store"></i></div>
           Alfamart Trading Phils, Inc.
         </div>
-        <ul class="t-items">
-          <li class="t-item"><i class="fa-solid fa-arrow-right t-arrow" aria-hidden="true"></i>Assisted customers and performed daily store tasks</li>
-          <li class="t-item"><i class="fa-solid fa-arrow-right t-arrow" aria-hidden="true"></i>Restocked and organized products, and kept the store clean</li>
-          <li class="t-item"><i class="fa-solid fa-arrow-right t-arrow" aria-hidden="true"></i>Worked with the team to ensure smooth store operations</li>
-        </ul>
+        <div class="t-items">
+          <div class="t-item">
+            <i class="fa-solid fa-arrow-right t-arrow"></i>
+            Assisted customers and performed daily store tasks
+          </div>
+          <div class="t-item">
+            <i class="fa-solid fa-arrow-right t-arrow"></i>
+            Restocked and organized products, and kept the store clean
+          </div>
+          <div class="t-item">
+            <i class="fa-solid fa-arrow-right t-arrow"></i>
+            Worked with the team to ensure smooth store operations
+          </div>
+        </div>
       </div>
+
       <div class="timeline-item reveal reveal-delay-2">
-        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-dot"></div>
         <div class="t-date">June 2025 — September 2025</div>
-        <h3 class="t-role">Intern (Pre-Experience)</h3>
+        <div class="t-role">Intern (Pre-Experience)</div>
         <div class="t-org">
-          <div class="t-org-icon" aria-hidden="true"><i class="fa-solid fa-landmark"></i></div>
+          <div class="t-org-icon"><i class="fa-solid fa-landmark"></i></div>
           Philippine Statistics Authority – CAR, Baguio City
         </div>
-        <ul class="t-items">
-          <li class="t-item"><i class="fa-solid fa-arrow-right t-arrow" aria-hidden="true"></i>Created RSSOCAR Publication System as a final internship project with the Statistical Operations and Coordination Division (SOCD), making data more accessible for official publications</li>
-          <li class="t-item"><i class="fa-solid fa-arrow-right t-arrow" aria-hidden="true"></i>Worked across different divisions to support statistical operations, focusing on organized data management and clear information sharing</li>
-        </ul>
+        <div class="t-items">
+          <div class="t-item">
+            <i class="fa-solid fa-arrow-right t-arrow"></i>
+            Created RSSOCAR Publication System as a final internship project with the Statistical Operations and Coordination Division (SOCD), making data more accessible for official publications
+          </div>
+          <div class="t-item">
+            <i class="fa-solid fa-arrow-right t-arrow"></i>
+            Worked across different divisions to support statistical operations, focusing on organized data management and clear information sharing
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<div class="section-divider" aria-hidden="true"></div>
 
-<!-- ─── EDUCATION ──────────────────────────────────── -->
-<section id="education" aria-labelledby="edu-title">
+<div class="section-divider"></div>
+
+<!-- ─── EDUCATION ────────────────────────────────────── -->
+<section id="education">
   <div class="container">
     <div class="section-label reveal">04 — Education</div>
-    <h2 class="section-title reveal reveal-delay-1" id="edu-title" style="margin-bottom: 3rem;">Academic<br/>Background.</h2>
+    <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 3rem;">Academic<br/>Background.</h2>
+
     <div class="edu-card reveal reveal-delay-2">
-      <div class="edu-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div class="edu-icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
       <div>
         <div class="edu-degree">Bachelor of Science in Information Technology</div>
         <div class="edu-school">Panpacific University — Tayug Campus</div>
@@ -1380,268 +1721,184 @@
     </div>
   </div>
 </section>
-<div class="section-divider" aria-hidden="true"></div>
 
-<!-- ─── CERTIFICATIONS ─────────────────────────────── -->
-<section id="certifications" aria-labelledby="certs-title">
+<div class="section-divider"></div>
+
+<!-- ─── CERTIFICATIONS ───────────────────────────────── -->
+<section id="certifications">
   <div class="container">
     <div class="section-label reveal">05 — Credentials</div>
-    <h2 class="section-title reveal reveal-delay-1" id="certs-title">Certifications &amp;<br/>Achievements.</h2>
+    <h2 class="section-title reveal reveal-delay-1">Certifications &amp;<br/>Achievements.</h2>
     <div class="certs-grid">
+
       <div class="cert-card reveal">
-        <div class="cert-ico-wrap" aria-hidden="true"><i class="fa-solid fa-medal"></i></div>
+        <div class="cert-ico-wrap"><i class="fa-solid fa-medal"></i></div>
         <div>
           <div class="cert-name">OJT Completion Certificate</div>
           <div class="cert-detail">Philippine Statistics Authority (2025)<br/>RSSO — Cordillera Administrative Region, Baguio City</div>
         </div>
       </div>
+
       <div class="cert-card reveal reveal-delay-1">
-        <div class="cert-ico-wrap" aria-hidden="true"><i class="fa-solid fa-trophy"></i></div>
+        <div class="cert-ico-wrap"><i class="fa-solid fa-trophy"></i></div>
         <div>
           <div class="cert-name">Champion — Digital Poster Competition</div>
           <div class="cert-detail">Panpacific University · April 11, 2025<br/>Theme: "The Role of AI in Information Technology"</div>
         </div>
       </div>
+
       <div class="cert-card reveal reveal-delay-2">
-        <div class="cert-ico-wrap" aria-hidden="true"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-ico-wrap"><i class="fa-solid fa-certificate"></i></div>
         <div>
           <div class="cert-name">Striking a Balance: Six Pillars of Well-Being</div>
           <div class="cert-detail">Training Certificate · July 4, 2025</div>
         </div>
       </div>
+
       <div class="cert-card reveal">
-        <div class="cert-ico-wrap" aria-hidden="true"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-ico-wrap"><i class="fa-solid fa-certificate"></i></div>
         <div>
           <div class="cert-name">Data Storytelling and Data Visualization</div>
           <div class="cert-detail">Training Certificate · July 2, 2025</div>
         </div>
       </div>
+
       <div class="cert-card reveal reveal-delay-1">
-        <div class="cert-ico-wrap" aria-hidden="true"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-ico-wrap"><i class="fa-solid fa-certificate"></i></div>
         <div>
           <div class="cert-name">IT Trends &amp; Special Topics</div>
           <div class="cert-detail">UI/UX · Systems Administration · Cybersecurity<br/>Panpacific University · April 11, 2023</div>
         </div>
       </div>
+
       <div class="cert-card reveal reveal-delay-2">
-        <div class="cert-ico-wrap" aria-hidden="true"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-ico-wrap"><i class="fa-solid fa-certificate"></i></div>
         <div>
           <div class="cert-name">Java Programming 1</div>
           <div class="cert-detail">Certificate of Completion<br/>CodeChum · December 2022</div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
-<div class="section-divider" aria-hidden="true"></div>
 
-<!-- ─── CONTACT ────────────────────────────────────── -->
-<section id="contact" aria-labelledby="contact-title">
+<div class="section-divider"></div>
+
+<!-- ─── CONTACT ──────────────────────────────────────── -->
+<section id="contact">
   <div class="container">
     <div class="contact-inner">
       <div class="contact-left">
         <div class="section-label reveal">06 — Contact</div>
-        <h2 class="section-title reveal reveal-delay-1" id="contact-title">Let's work<br/>together.</h2>
+        <h2 class="section-title reveal reveal-delay-1">Let's work<br/>together.</h2>
         <p class="contact-desc reveal reveal-delay-2">
           Whether you have a role to fill, a project to ship, or just want to
           explore possibilities — I'm always open to thoughtful conversations.
         </p>
         <div class="contact-links reveal reveal-delay-3">
           <a href="tel:+639686690719" class="contact-link">
-            <i class="fa-solid fa-phone contact-link-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-phone contact-link-icon"></i>
             +63 968 669 0719
           </a>
           <a href="mailto:jameslimos1512@gmail.com" class="contact-link">
-            <i class="fa-solid fa-envelope contact-link-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-envelope contact-link-icon"></i>
             jameslimos1512@gmail.com
           </a>
-          <a href="https://maps.app.goo.gl/4bjEkDcSSzQepEtp7" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <i class="fa-solid fa-location-dot contact-link-icon" aria-hidden="true"></i>
+          <div class="contact-link">
+            <i class="fa-solid fa-location-dot contact-link-icon"></i>
             San Nicolas, Pangasinan, Philippines
-          </a>
+          </div>
         </div>
       </div>
+
+      <!-- ─── CONTACT FORM (EmailJS) ─────────────────── -->
       <div class="contact-right reveal reveal-delay-2">
-        <form id="contact-form" novalidate>
-          <div class="form-group">
-            <label class="form-label" for="contact-name">Name</label>
-            <input id="contact-name" type="text" class="form-input" placeholder="Your name" required maxlength="100" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="contact-email">Email</label>
-            <input id="contact-email" type="email" class="form-input" placeholder="your@email.com" required maxlength="254" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="contact-subject">Subject</label>
-            <input id="contact-subject" type="text" class="form-input" placeholder="What's this about?" required maxlength="200" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="contact-message">Message</label>
-            <textarea id="contact-message" class="form-textarea" placeholder="Tell me about your project or opportunity..." required maxlength="5000"></textarea>
-          </div>
-          <button class="form-submit" id="submitBtn" type="submit">
-            <div class="spinner" id="formSpinner"></div>
-            <span id="submitText">Send Message →</span>
-          </button>
-          <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
-        </form>
+        <div class="form-group">
+          <label class="form-label" for="form-name">Name</label>
+          <input type="text" id="form-name" class="form-input" placeholder="Your name" autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="form-email">Email</label>
+          <input type="email" id="form-email" class="form-input" placeholder="your@email.com" autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="form-message">Message</label>
+          <textarea id="form-message" class="form-textarea" placeholder="Tell me about your project or opportunity..."></textarea>
+        </div>
+        <!-- Status feedback -->
+        <div id="form-status"></div>
+        <button class="form-submit" id="form-btn" onclick="handleSubmit(this)">
+          <span>Send Message</span> <i class="fa-solid fa-arrow-right"></i>
+        </button>
       </div>
     </div>
   </div>
 </section>
 
-</main>
-
-<!-- ─── FOOTER ─────────────────────────────────────── -->
+<!-- ─── FOOTER ───────────────────────────────────────── -->
 <footer>
   <div class="container">
     <div class="footer-inner">
       <span class="footer-copy">© 2025 James Vincent G. Limos. All rights reserved.</span>
-      <span class="footer-deco" aria-hidden="true">IT Graduate · Philippines</span>
+      <span class="footer-deco">IT Graduate · Philippines</span>
       <div class="footer-links">
         <a href="mailto:jameslimos1512@gmail.com">Email</a>
         <a href="tel:+639686690719">Phone</a>
-        <a href="#" id="footer-cv-btn">Resume</a>
+        <a href="#" onclick="event.preventDefault(); openModal();">Resume</a>
       </div>
     </div>
   </div>
 </footer>
 
+<!-- ─── CUSTOM MODAL ──────────────────────────────────── -->
+<div id="cv-modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
+    <h3 class="modal-title" id="modal-title">Restricted Access</h3>
+    <p class="modal-desc">Please enter the password to download the resume.</p>
+    <div class="modal-input-group">
+      <input type="password" id="modal-pass" class="modal-input" placeholder="Enter password..." autocomplete="off" />
+      <div class="modal-msg" id="modal-msg">Incorrect password</div>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-btn modal-btn-confirm" id="modal-unlock">
+        <i class="fa-solid fa-lock-open"></i> Unlock
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
-  /* ══════════════════════════════════════════════════════
-     EmailJS v4 Initialization
-  ══════════════════════════════════════════════════════ */
-  const EMAILJS_PUBLIC_KEY = 'C76n62tHz3HY64FJC';
-  const EMAILJS_SERVICE_ID = 'service_ooc9uuj';
+  /* ── EmailJS CONFIGURATION (UPDATED) ───────────────── */
+  const EMAILJS_PUBLIC_KEY  = '0W0B8nEy7lbVPA11A';
+  const EMAILJS_SERVICE_ID  = 'service_dphz0mr';
   const EMAILJS_TEMPLATE_ID = 'template_sitd7m1';
 
-  function initEmailJS() {
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
-  }
-  if (typeof emailjs !== 'undefined') {
-    initEmailJS();
-  } else {
-    window.addEventListener('load', initEmailJS);
-  }
+  /* ── EmailJS INITIALIZATION (User Requested Format) ── */
+  (function(){
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    console.log('[EmailJS] Initialized with Key: ' + EMAILJS_PUBLIC_KEY);
+  })();
 
-  /* ══════════════════════════════════════════════════════
-     Password Gate
-  ══════════════════════════════════════════════════════ */
-  const passwordGate = document.getElementById('password-gate');
-  const passInput = document.getElementById('pass-input');
-  const unlockBtn = document.getElementById('unlock-btn');
-  const passError = document.getElementById('pass-error');
-  const CORRECT_PASSCODE = '152003';
-
-  function unlockSite() {
-    if (passInput.value === CORRECT_PASSCODE) {
-      passError.style.display = 'none';
-      passwordGate.classList.add('hidden');
-      setTimeout(() => {
-        passwordGate.style.display = 'none';
-        const loader = document.getElementById('loader');
-        loader.style.display = 'flex';
-        setTimeout(() => loader.classList.add('done'), 2000);
-      }, 650);
-    } else {
-      passError.textContent = '✕ Incorrect passcode. Try again.';
-      passError.style.display = 'block';
-      passInput.value = '';
-      passInput.focus();
-      passwordGate.classList.add('shake');
-      setTimeout(() => passwordGate.classList.remove('shake'), 500);
-    }
-  }
-
-  unlockBtn.addEventListener('click', unlockSite);
-  passInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') { e.preventDefault(); unlockSite(); }
-  });
-  /* Auto-focus the input when gate is visible */
-  passInput.focus();
-
-  /* ══════════════════════════════════════════════════════
-     CV Download Modal (replaces prompt())
-  ══════════════════════════════════════════════════════ */
-  const cvOverlay = document.getElementById('cv-modal-overlay');
-  const cvPassInput = document.getElementById('cv-pass-input');
-  const cvConfirmBtn = document.getElementById('cv-confirm-btn');
-  const cvCancelBtn = document.getElementById('cv-cancel-btn');
-  const cvModalError = document.getElementById('cv-modal-error');
-  const CV_URL = '/James_Vincent_Limos_CV.pdf';
-
-  function openCvModal(e) {
-    if (e) e.preventDefault();
-    cvOverlay.classList.add('open');
-    cvPassInput.value = '';
-    cvModalError.style.display = 'none';
-    setTimeout(() => cvPassInput.focus(), 100);
-  }
-
-  function closeCvModal() {
-    cvOverlay.classList.remove('open');
-  }
-
-  function confirmCvDownload() {
-    if (cvPassInput.value === CORRECT_PASSCODE) {
-      closeCvModal();
-      /* Create a temporary link to trigger download */
-      const a = document.createElement('a');
-      a.href = CV_URL;
-      a.download = 'James_Vincent_Limos_CV.pdf';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } else {
-      cvModalError.textContent = '✕ Incorrect passcode.';
-      cvModalError.style.display = 'block';
-      cvPassInput.value = '';
-      cvPassInput.focus();
-    }
-  }
-
-  /* Bind all CV download triggers */
-  document.getElementById('nav-cv-btn').addEventListener('click', openCvModal);
-  document.getElementById('mobile-cv-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    closeMobile();
-    setTimeout(openCvModal, 350);
-  });
-  document.getElementById('footer-cv-btn').addEventListener('click', openCvModal);
-
-  cvConfirmBtn.addEventListener('click', confirmCvDownload);
-  cvCancelBtn.addEventListener('click', closeCvModal);
-  cvPassInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') { e.preventDefault(); confirmCvDownload(); }
-    if (e.key === 'Escape') closeCvModal();
-  });
-  /* Close on overlay click */
-  cvOverlay.addEventListener('click', function(e) {
-    if (e.target === cvOverlay) closeCvModal();
-  });
-  /* Close on Escape */
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && cvOverlay.classList.contains('open')) closeCvModal();
+  /* ── LOADER ──────────────────────────────────────── */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('done');
+    }, 2000);
   });
 
-  /* ══════════════════════════════════════════════════════
-     Scroll Handler
-  ══════════════════════════════════════════════════════ */
-  const navbar = document.getElementById('navbar');
-  const progress = document.getElementById('scroll-progress');
-  const backToTop = document.getElementById('back-to-top');
-  const navAnchors = document.querySelectorAll('.nav-links a[data-s]');
+  /* ── SCROLL HANDLER ──────────────────────────────── */
+  const navbar      = document.getElementById('navbar');
+  const progress    = document.getElementById('scroll-progress');
+  const backToTop   = document.getElementById('back-to-top');
+  const navAnchors  = document.querySelectorAll('.nav-links a[data-s]');
   const SECTION_IDS = ['about','skills','experience','education','certifications','contact'];
-  const sections = SECTION_IDS.map(id => document.getElementById(id)).filter(Boolean);
-
-  backToTop.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  const sections    = SECTION_IDS.map(id => document.getElementById(id)).filter(Boolean);
 
   function onScroll() {
-    const sy = window.scrollY;
+    const sy  = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.width = max > 0 ? (sy / max * 100) + '%' : '0%';
     navbar.classList.toggle('scrolled', sy > 30);
@@ -1653,42 +1910,25 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ══════════════════════════════════════════════════════
-     Mobile Menu
-  ══════════════════════════════════════════════════════ */
-  const hamburger = document.getElementById('hamburger');
+  /* ── MOBILE MENU ─────────────────────────────────── */
+  const hamburger  = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   let menuOpen = false;
-
   function toggleMobile() {
     menuOpen = !menuOpen;
     hamburger.classList.toggle('open', menuOpen);
-    hamburger.setAttribute('aria-expanded', menuOpen);
     mobileMenu.classList.toggle('open', menuOpen);
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   }
-
   function closeMobile() {
     menuOpen = false;
     hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
     mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
   }
-
   hamburger.addEventListener('click', toggleMobile);
-  /* Close mobile menu on link click */
-  mobileMenu.querySelectorAll('a:not(.mobile-cta-btn)').forEach(a => {
-    a.addEventListener('click', closeMobile);
-  });
-  /* Close on Escape */
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && menuOpen) closeMobile();
-  });
 
-  /* ══════════════════════════════════════════════════════
-     Scroll Reveal (IntersectionObserver)
-  ══════════════════════════════════════════════════════ */
+  /* ── SCROLL REVEAL ───────────────────────────────── */
   const revealObs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1699,23 +1939,20 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-  /* ══════════════════════════════════════════════════════
-     Animated Counters
-  ══════════════════════════════════════════════════════ */
+  /* ── ANIMATED COUNTERS ───────────────────────────── */
   function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
-
   const counterObs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
+      const el     = entry.target;
       const target = parseInt(el.dataset.count, 10);
       const suffix = el.dataset.suffix ?? '+';
-      const dur = 1200;
-      let start = null;
+      const dur    = 1200;
+      let start    = null;
       function step(ts) {
         if (!start) start = ts;
         const elapsed = Math.min(ts - start, dur);
-        const prog = easeOutQuart(elapsed / dur);
+        const prog    = easeOutQuart(elapsed / dur);
         el.textContent = Math.round(prog * target) + suffix;
         if (elapsed < dur) requestAnimationFrame(step);
         else el.textContent = target + suffix;
@@ -1726,14 +1963,12 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObs.observe(el));
 
-  /* ══════════════════════════════════════════════════════
-     Typed Eyebrow Effect
-  ══════════════════════════════════════════════════════ */
-  const phrases = ['Web Developer', 'IT Graduate', 'Database Learner', 'Quick Learner'];
+  /* ── TYPED EYEBROW ───────────────────────────────── */
+  const phrases  = ['Web Developer', 'IT Graduate', 'Database Enthusiast', 'Quick Learner'];
   let pIdx = 0, cIdx = 0, deleting = false;
   const typedEl = document.getElementById('typed-eyebrow');
-
   if (typedEl) {
+    typedEl.textContent = '';
     function typeLoop() {
       const current = phrases[pIdx];
       if (!deleting) {
@@ -1747,149 +1982,196 @@
       }
       setTimeout(typeLoop, deleting ? 55 : 100);
     }
-    /* Start after a shorter delay */
-    setTimeout(typeLoop, 1200);
+    setTimeout(typeLoop, 3200);
   }
 
-  /* ══════════════════════════════════════════════════════
-     Hero Parallax (decorative text)
-  ══════════════════════════════════════════════════════ */
+  /* ── HERO PARALLAX ───────────────────────────────── */
   const heroDeco = document.querySelector('.hero-deco');
   if (heroDeco) {
     window.addEventListener('scroll', () => {
-      heroDeco.style.transform = 'translateY(calc(-50% + ' + (window.scrollY * 0.12) + 'px))';
+      heroDeco.style.transform = `translateY(calc(-50% + ${window.scrollY * 0.12}px))`;
     }, { passive: true });
   }
 
-  /* ══════════════════════════════════════════════════════
-     Contact Form (EmailJS)
-  ══════════════════════════════════════════════════════ */
-  const contactForm = document.getElementById('contact-form');
-  const submitBtn = document.getElementById('submitBtn');
+  /* ── CUSTOM MODAL LOGIC ──────────────────────────── */
+  const modal        = document.getElementById('cv-modal');
+  const passInput    = document.getElementById('modal-pass');
+  const modalMsg     = document.getElementById('modal-msg');
+  const unlockBtn    = document.getElementById('modal-unlock');
+  const modalContent = document.querySelector('.modal-content');
+  const PASSWORD     = '152003';
+  const CV_URL       = '/James_Vincent_Limos_CV.pdf';
 
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+  function openModal() {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    passInput.value = '';
+    passInput.classList.remove('error');
+    modalMsg.classList.remove('visible');
+    modalContent.classList.remove('shake-anim');
+    setTimeout(() => passInput.focus(), 100);
+  }
 
-    const nameEl = document.getElementById('contact-name');
-    const emailEl = document.getElementById('contact-email');
-    const subjectEl = document.getElementById('contact-subject');
-    const msgEl = document.getElementById('contact-message');
-    const statusEl = document.getElementById('formStatus');
-    const spinnerEl = document.getElementById('formSpinner');
-    const textEl = document.getElementById('submitText');
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
 
-    /* Reset status */
-    statusEl.className = 'form-status';
-    statusEl.textContent = '';
+  function attemptUnlock() {
+    const val = passInput.value;
+    if (val === PASSWORD) {
+      window.open(CV_URL, '_blank');
+      closeModal();
+    } else {
+      passInput.classList.add('error');
+      modalMsg.classList.add('visible');
+      modalContent.classList.remove('shake-anim');
+      void modalContent.offsetWidth;
+      modalContent.classList.add('shake-anim');
+      passInput.focus();
+    }
+  }
 
-    /* Validate required fields */
-    if (!nameEl.value.trim() || !emailEl.value.trim() || !subjectEl.value.trim() || !msgEl.value.trim()) {
-      statusEl.className = 'form-status error';
-      statusEl.textContent = '✕ Please fill in all fields before sending.';
+  unlockBtn.addEventListener('click', attemptUnlock);
+  passInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptUnlock(); });
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  /* ── CONTACT FORM — EmailJS (UPDATED WITH DEBUG) ── */
+  function setStatus(text, color) {
+    const el = document.getElementById('form-status');
+    el.textContent = text;
+    el.style.color = color;
+    el.classList.toggle('visible', text.length > 0);
+  }
+
+  function clearFieldErrors() {
+    document.getElementById('form-name').classList.remove('field-error');
+    document.getElementById('form-email').classList.remove('field-error');
+    document.getElementById('form-message').classList.remove('field-error');
+  }
+
+  function handleSubmit(btn) {
+    const nameEl    = document.getElementById('form-name');
+    const emailEl   = document.getElementById('form-email');
+    const msgEl     = document.getElementById('form-message');
+
+    const name    = nameEl.value.trim();
+    const email   = emailEl.value.trim();
+    const message = msgEl.value.trim();
+
+    clearFieldErrors();
+
+    /* ── Validation ── */
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name) {
+      nameEl.classList.add('field-error');
+      setStatus('⚠ Name is required.', '#c8a97e');
+      nameEl.focus();
       return;
     }
-
-    /* Validate email format */
-    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRx.test(emailEl.value.trim())) {
-      statusEl.className = 'form-status error';
-      statusEl.textContent = '✕ Please enter a valid email address.';
+    if (!email || !emailRegex.test(email)) {
+      emailEl.classList.add('field-error');
+      setStatus('⚠ Please enter a valid email address.', '#c8a97e');
       emailEl.focus();
       return;
     }
-
-    /* Check EmailJS availability */
-    if (typeof emailjs === 'undefined') {
-      statusEl.className = 'form-status error';
-      statusEl.textContent = '✕ Email service unavailable. Please email me directly at jameslimos1512@gmail.com';
+    if (!message) {
+      msgEl.classList.add('field-error');
+      setStatus('⚠ Message cannot be empty.', '#c8a97e');
+      msgEl.focus();
       return;
     }
 
-    /* Show loading state */
-    submitBtn.disabled = true;
-    submitBtn.classList.add('loading');
-    spinnerEl.style.display = 'block';
-    textEl.textContent = 'Sending…';
+    /* ── Sending state ── */
+    // Store original content to restore later
+    const originalBtnContent = btn.innerHTML;
+    
+    btn.innerHTML  = '<i class="fa-solid fa-spinner fa-spin-custom"></i> Sending…';
+    btn.disabled     = true;
+    btn.style.opacity = '.65';
+    setStatus('', '');
 
+    /* ── Prepare Parameters ── */
+    // IMPORTANT: Make sure these keys match the variables in your EmailJS Template!
     const templateParams = {
-      from_name: nameEl.value.trim(),
-      from_email: emailEl.value.trim(),
-      subject: subjectEl.value.trim(),
-      message: msgEl.value.trim(),
-      to_email: 'jameslimos1512@gmail.com',
-      reply_to: emailEl.value.trim()
+      from_name:  name,
+      from_email: email,
+      message:    message,
+      to_email:   'jameslimos1512@gmail.com', // Fixed recipient
+      reply_to:   email,
     };
 
-    emailjs
-      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, {
-        publicKey: EMAILJS_PUBLIC_KEY
-      })
-      .then(function(response) {
-        console.log('EmailJS success:', response.status, response.text);
-        submitBtn.classList.remove('loading');
-        spinnerEl.style.display = 'none';
-        textEl.textContent = '✓ Message Sent!';
-        submitBtn.style.background = 'var(--success)';
-        submitBtn.style.color = '#fff';
-        statusEl.className = 'form-status success';
-        statusEl.textContent = "✓ Thank you! I'll get back to you as soon as possible.";
-        contactForm.reset();
-        setTimeout(function() {
-          submitBtn.disabled = false;
-          submitBtn.style.background = '';
-          submitBtn.style.color = '';
-          textEl.textContent = 'Send Message →';
+    console.log('[EmailJS] Attempting to send...', templateParams);
+
+    /* ── Send Email ── */
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+      .then(() => {
+        /* ── Success ── */
+        console.log('[EmailJS] SUCCESS: Email sent successfully.');
+        btn.innerHTML       = '<i class="fa-solid fa-check"></i> Sent';
+        btn.style.background  = '#4a8c6a';
+        btn.style.color       = '#fff';
+        btn.style.opacity     = '1';
+        setStatus('✓ Thanks! I\'ll get back to you soon.', '#4a8c6a');
+
+        nameEl.value  = '';
+        emailEl.value = '';
+        msgEl.value   = '';
+        clearFieldErrors();
+
+        /* Auto-reset button after 4s */
+        setTimeout(() => {
+          btn.innerHTML      = originalBtnContent;
+          btn.style.background = '';
+          btn.style.color      = '';
+          btn.disabled         = false;
+          btn.style.opacity    = '1';
+          setStatus('', '');
         }, 4000);
       })
-      .catch(function(err) {
-        console.error('EmailJS error:', err);
-        submitBtn.classList.remove('loading');
-        submitBtn.disabled = false;
-        spinnerEl.style.display = 'none';
-        textEl.textContent = 'Send Message →';
-        let msg = '✕ Something went wrong. Please try again or email me directly.';
-        if (err && err.status === 400) msg = '✕ Bad request — check your EmailJS template variable names.';
-        else if (err && err.status === 401) msg = '✕ Unauthorized — verify your EmailJS Public Key.';
-        else if (err && err.status === 403) msg = '✕ Forbidden — check your EmailJS service/template IDs.';
-        else if (err && err.status === 412) msg = '✕ EmailJS service not found. Verify the Service ID.';
-        else if (err && err.status === 422) msg = '✕ Template variable mismatch. Check your EmailJS template.';
-        statusEl.className = 'form-status error';
-        statusEl.textContent = msg;
+      .catch((err) => {
+        /* ── Error ── */
+        console.error('[EmailJS] FAILED: ', err);
+        
+        // Detailed error logging for debugging
+        console.error('Status Code:', err.status);
+        console.error('Error Text:', err.text);
+        
+        btn.innerHTML   = originalBtnContent;
+        btn.style.opacity = '1';
+        btn.disabled      = false;
+        
+        // Display the specific error text from EmailJS if available
+        const errorMsg = err.text ? err.text : 'Please check Console (F12) for details.';
+        setStatus('✕ Failed: ' + errorMsg, '#d9534f');
       });
-  });
-
-  /* ══════════════════════════════════════════════════════
-     Custom Cursor Dot (desktop only)
-  ══════════════════════════════════════════════════════ */
-  if (window.matchMedia('(pointer: fine)').matches && window.innerWidth > 1024) {
-    const dot = document.createElement('div');
-    dot.setAttribute('aria-hidden', 'true');
-    dot.style.cssText =
-      'position:fixed;width:5px;height:5px;border-radius:50%;' +
-      'background:#c8a97e;pointer-events:none;z-index:9998;' +
-      'transition:transform .1s,opacity .3s;opacity:0;' +
-      'transform:translate(-50%,-50%);' +
-      'mix-blend-mode:difference;';
-    document.body.appendChild(dot);
-    document.addEventListener('mousemove', function(e) {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top = e.clientY + 'px';
-      dot.style.opacity = '.7';
-    });
-    document.addEventListener('mouseleave', function() { dot.style.opacity = '0'; });
   }
 
-  /* ══════════════════════════════════════════════════════
-     Console Branding
-  ══════════════════════════════════════════════════════ */
-  console.log(
-    '%c James Vincent G. Limos ',
-    'background:#161616;color:#c8a97e;font-family:"Shippori Mincho",serif;font-size:16px;padding:8px 16px;border-radius:4px;font-weight:700;'
-  );
-  console.log(
-    '%c IT Graduate · Open to Opportunities · jameslimos1512@gmail.com ',
-    'color:#7a7570;font-family:monospace;font-size:11px;'
-  );
+  /* ── CUSTOM CURSOR DOT (desktop only) ────────────── */
+  if (window.innerWidth > 1024) {
+    const dot = document.createElement('div');
+    dot.style.cssText = `
+      position:fixed;width:5px;height:5px;border-radius:50%;
+      background:#c8a97e;pointer-events:none;z-index:9998;
+      transition:transform .1s,opacity .3s;opacity:0;
+      transform:translate(-50%,-50%);
+    `;
+    document.body.appendChild(dot);
+    document.addEventListener('mousemove', e => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top  = e.clientY + 'px';
+      dot.style.opacity = '.7';
+    });
+    document.addEventListener('mouseleave', () => dot.style.opacity = '0');
+  }
+
+  /* ── CONSOLE EASTER EGG ──────────────────────────── */
+  console.log('%c James Vincent G. Limos ', 'background:#161616;color:#c8a97e;font-family:"Shippori Mincho",serif;font-size:16px;padding:8px 16px;border-radius:4px;font-weight:700;');
+  console.log('%c IT Graduate · Open to Opportunities · jameslimos1512@gmail.com ', 'color:#7a7570;font-family:monospace;font-size:11px;');
 </script>
 </body>
 </html>
